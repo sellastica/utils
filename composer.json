@@ -1,0 +1,23 @@
+{
+    "name": "sellastica/utils",
+	"type": "project",
+	"homepage": "https://github.com/sellastica/utils",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tomáš Krejčí",
+            "email": "tomas@differencemakers.cz"
+        }
+    ],
+	"require": {
+		"php": ">=7.1",
+		"nette/nette": "^v2.4.0"
+	},
+	"require-dev": {
+    },
+	"autoload": {
+        "psr-4": {
+            "Sellastica\\Utils\\": "src/"
+        }
+    }
+}
