@@ -1,7 +1,5 @@
 <?php
-namespace App\UI\Utils;
-
-use Sellastica\Utils\Strings;
+namespace Sellastica\Utils;
 
 class Presenters
 {
