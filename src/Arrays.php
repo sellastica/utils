@@ -110,7 +110,7 @@ class Arrays extends \Nette\Utils\Arrays
 	 * @return array
 	 */
 	public static function keysToCamelCase(
-		iterable $array,
+		$array,
 		string $divider = '_',
 		bool $capitalizeFirstCharacter = false
 	): array
