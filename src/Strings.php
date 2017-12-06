@@ -122,7 +122,6 @@ class Strings extends \Nette\Utils\Strings
 	 *
 	 * @param string $localization
 	 * @return array
-	 * @throws \UnexpectedValueException
 	 */
 	public static function getStopwords(string $localization): array
 	{
@@ -159,9 +158,7 @@ class Strings extends \Nette\Utils\Strings
 				];
 				break;
 			default:
-				throw new \UnexpectedValueException(
-					sprintf('Stopwords not defined for language "%s"', $localization)
-				);
+				$array = [];
 				break;
 		}
 
