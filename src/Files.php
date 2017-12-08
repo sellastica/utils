@@ -16,6 +16,10 @@ class Files
 		$fileNameWithoutExtension = Strings::trim(Strings::webalize($fileNameWithoutExtension, '()_', false), '-');
 
 		$extension = pathinfo($fileName, PATHINFO_EXTENSION);
+		if (strpos($extension, '?') !== false) {
+			$extension = Strings::before($extension, '?');
+		}
+
 		$extension = Strings::trim(Strings::webalize($extension, '_'), '-');
 
 		return $fileNameWithoutExtension . '.' . $extension;
