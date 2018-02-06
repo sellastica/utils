@@ -39,7 +39,7 @@ class Images
 			$width = $height = max($width, $height);
 		}
 
-		return 'https://placehold.it/' . $width . 'x' . $height . '/f5f5f5?text=no+image';
+		return 'https://placehold.it/' . $width . 'x' . $height . '/f5f5f5?text=+';
 	}
 
 	/**
