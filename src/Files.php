@@ -61,4 +61,18 @@ class Files
 	{
 		return pathinfo($filename, PATHINFO_FILENAME);
 	}
+
+	/**
+	 * @param string $url
+	 * @return \DateTime|null
+	 */
+	public static function filemtime(string $url): ?\DateTime
+	{
+		$headers = @get_headers($url, 1);
+		if ($headers && strstr($headers[0], '200') !== false) {
+			return new \DateTime($headers['Last-Modified']);
+		}
+
+		return null;
+	}
 }
