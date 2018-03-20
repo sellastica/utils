@@ -32,6 +32,66 @@ class RoundingPrecision
 	}
 
 	/**
+	 * @return int
+	 */
+	public function getExponent(): int
+	{
+		switch ($this->precision) {
+			case self::THOUSANDTH:
+				return 0.001;
+				break;
+			case self::HUNDREDTHS:
+				return 0.01;
+				break;
+			case self::TENTHS:
+				return 0.1;
+				break;
+			case self::INTEGERS:
+				return 1;
+				break;
+			case self::TENS:
+				return 10;
+				break;
+			case self::HUNDREDS:
+				return 10;
+				break;
+			case self::THOUSANDS:
+				return 1000;
+				break;
+			default:
+				throw new \UnexpectedValueException('Unknown rounding exponent');
+				break;
+		}
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getFractionDigits(): int
+	{
+		switch ($this->precision) {
+			case self::THOUSANDTH:
+				return 3;
+				break;
+			case self::HUNDREDTHS:
+				return 2;
+				break;
+			case self::TENTHS:
+				return 1;
+				break;
+			case self::INTEGERS:
+			case self::TENS:
+			case self::HUNDREDS:
+			case self::THOUSANDS:
+				return 0;
+				break;
+			default:
+				throw new \UnexpectedValueException('Unknown rounding exponent');
+				break;
+		}
+	}
+
+	/**
 	 * @return string
 	 */
 	public function __toString(): string
@@ -67,5 +127,13 @@ class RoundingPrecision
 	public static function integers(): RoundingPrecision
 	{
 		return new self(self::INTEGERS);
+	}
+
+	/**
+	 * @return RoundingPrecision
+	 */
+	public static function hundredths(): RoundingPrecision
+	{
+		return new self(self::HUNDREDTHS);
 	}
 }
