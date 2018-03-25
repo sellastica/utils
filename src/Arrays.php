@@ -74,7 +74,7 @@ class Arrays extends \Nette\Utils\Arrays
 			// If the key doesn't exist at this depth, we will just create an empty array
 			// to hold the next value, allowing us to create the arrays to hold final
 			// values at the correct depth. Then we'll keep digging into the array.
-			if (! isset($array[$key]) || ! is_array($array[$key])) {
+			if (!isset($array[$key]) || !is_array($array[$key])) {
 				$array[$key] = [];
 			}
 
@@ -199,10 +199,25 @@ class Arrays extends \Nette\Utils\Arrays
 	 * @param array $array
 	 * @return array
 	 */
-	public static function filterNulls(array $array) : array
+	public static function filterNulls(array $array): array
 	{
 		return array_filter($array, function ($v) {
 			return !is_null($v);
 		});
+	}
+
+	/**
+	 * @param array $array
+	 * @return bool
+	 */
+	public static function isMultidimensional(array $array): bool
+	{
+		foreach ($array as $v) {
+			if (is_array($v)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
