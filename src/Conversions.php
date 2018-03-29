@@ -71,6 +71,8 @@ class Conversions
 			return (int)$var;
 		} elseif (is_object($var) && method_exists($var, '__toInt')) {
 			return $var->__toInt();
+		} elseif (is_object($var) && method_exists($var, '__toFloat')) {
+			return (int)$var->__toFloat();
 		}
 
 		return false;
