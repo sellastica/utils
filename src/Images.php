@@ -3,6 +3,9 @@ namespace Sellastica\Utils;
 
 class Images
 {
+	private const PLACEHOLDER_DOMAIN = 'https://placehold.it';
+
+
 	/**
 	 * @param string $fileName
 	 * @param string $path
@@ -39,7 +42,16 @@ class Images
 			$width = $height = max($width, $height);
 		}
 
-		return 'https://placehold.it/' . $width . 'x' . $height . '/f5f5f5?text=+';
+		return self::PLACEHOLDER_DOMAIN . '/' . $width . 'x' . $height . '/f5f5f5?text=+';
+	}
+
+	/**
+	 * @param string $url
+	 * @return bool
+	 */
+	public static function isPlaceholderUrl(string $url): bool
+	{
+		return \Nette\Utils\Strings::startsWith($url, self::PLACEHOLDER_DOMAIN);
 	}
 
 	/**
