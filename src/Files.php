@@ -7,16 +7,6 @@ namespace Sellastica\Utils;
 class Files
 {
 	/**
-	 * @param string $filename
-	 * @return bool
-	 */
-	public static function isFilenameValid(string $filename): bool
-	{
-		return preg_match('~^[a-z0-9\.\(\)_\-]+$~', $filename)
-			&& strpos($filename, '..') === false;
-	}
-
-	/**
 	 * @param string $fileName
 	 * @return string
 	 */

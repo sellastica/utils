@@ -18,4 +18,14 @@ class Validators extends Nette\Utils\Validators
 			return false;
 		}
 	}
+
+	/**
+	 * @param string $filename
+	 * @return bool
+	 */
+	public static function isFilenameValid(string $filename): bool
+	{
+		return preg_match('~^[a-z0-9\.\(\)_\-]+$~i', $filename)
+			&& strpos($filename, '..') === false;
+	}
 }
