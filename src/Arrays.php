@@ -220,4 +220,16 @@ class Arrays extends \Nette\Utils\Arrays
 
 		return false;
 	}
+
+	/**
+	 * @param array $array
+	 * @return array
+	 */
+	public static function iUnique(array $array): array
+	{
+		return array_intersect_key(
+			$array,
+			array_unique(array_map('strtolower', $array))
+		);
+	}
 }
