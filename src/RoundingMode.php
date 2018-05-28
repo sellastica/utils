@@ -6,7 +6,8 @@ class RoundingMode
 	const NONE = 'none',
 		UP = 'up',
 		DOWN = 'down',
-		MATHEMATICALLY = 'mathematically';
+		MATHEMATICALLY = 'mathematically',
+		STATISTICAL = 'statistical';
 
 	/** @var string */
 	private $mode;
@@ -42,7 +43,8 @@ class RoundingMode
 	 */
 	public static function assertMode(string $mode): void
 	{
-		if (!in_array($mode, [self::NONE, self::UP, self::DOWN, self::MATHEMATICALLY])) {
+		$rc = new \ReflectionClass(self::class);
+		if (!in_array($mode, $rc->getConstants())) {
 			throw new \InvalidArgumentException(sprintf('Uknown rounding mode "%s"', $mode));
 		}
 	}

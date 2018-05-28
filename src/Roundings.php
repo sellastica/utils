@@ -24,6 +24,9 @@ class Roundings
 		}
 
 		switch ($mode) {
+			case RoundingMode::STATISTICAL:
+				return self::roundStatistical($number, $precision);
+				break;
 			case RoundingMode::MATHEMATICALLY:
 				return self::roundMathematically($number, $precision);
 				break;
@@ -46,7 +49,7 @@ class Roundings
 	 * @param string $precision
 	 * @return float|int
 	 */
-	public static function roundMathematically(float $number, string $precision = roundingPrecision::INTEGERS): float
+	public static function roundMathematically(float $number, string $precision = RoundingPrecision::INTEGERS): float
 	{
 		RoundingPrecision::assertPrecision($precision);
 		switch ($precision) {
@@ -70,6 +73,39 @@ class Roundings
 				break;
 			default:
 				return round($number);
+				break;
+		}
+	}
+
+	/**
+	 * @param float $number
+	 * @param string $precision
+	 * @return float
+	 */
+	public static function roundStatistical(float $number, string $precision = RoundingPrecision::INTEGERS): float 
+	{
+		RoundingPrecision::assertPrecision($precision);
+		switch ($precision) {
+			case RoundingPrecision::THOUSANDTH:
+				return round($number, 3, PHP_ROUND_HALF_EVEN);
+				break;
+			case RoundingPrecision::HUNDREDTHS:
+				return round($number, 2, PHP_ROUND_HALF_EVEN);
+				break;
+			case RoundingPrecision::TENTHS:
+				return round($number, 1, PHP_ROUND_HALF_EVEN);
+				break;
+			case RoundingPrecision::TENS:
+				return round($number / 10, 0, PHP_ROUND_HALF_EVEN) * 10;
+				break;
+			case RoundingPrecision::HUNDREDS:
+				return round($number / 100, 0, PHP_ROUND_HALF_EVEN) * 100;
+				break;
+			case RoundingPrecision::THOUSANDS:
+				return round($number / 1000, 0, PHP_ROUND_HALF_EVEN) * 1000;
+				break;
+			default:
+				return round($number, 0, PHP_ROUND_HALF_EVEN);
 				break;
 		}
 	}
