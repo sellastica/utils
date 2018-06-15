@@ -3,7 +3,6 @@ namespace Sellastica\Utils;
 
 use Nette;
 use Nette\Localization\ITranslator;
-use Sellastica\Utils\Numbers;
 
 /**
  * DateTime tools library
