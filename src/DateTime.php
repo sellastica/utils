@@ -1,23 +1,20 @@
 <?php
 namespace Sellastica\Utils;
 
-use Nette;
-use Nette\Localization\ITranslator;
-
 /**
  * DateTime tools library
  */
-class DateTime extends Nette\Utils\DateTime
+class DateTime extends \Nette\Utils\DateTime
 {
 	/**
 	 * @param \DateTime $dateTime
-	 * @param ITranslator $translator
+	 * @param \Nette\Localization\ITranslator $translator
 	 * @param bool $seconds
 	 * @return string
 	 */
 	public static function prettify(
 		\DateTime $dateTime,
-		ITranslator $translator,
+		\Nette\Localization\ITranslator $translator,
 		bool $seconds = false
 	): string
 	{
@@ -47,7 +44,7 @@ class DateTime extends Nette\Utils\DateTime
 	 * @param \DateTime $till
 	 * @param bool $allowNullBoundaries
 	 * @return bool
-	 * @throws Nette\InvalidArgumentException
+	 * @throws \Nette\InvalidArgumentException
 	 */
 	public static function isRange(
 		\DateTime $from = null,
@@ -57,7 +54,7 @@ class DateTime extends Nette\Utils\DateTime
 	{
 		if ($allowNullBoundaries !== true) {
 			if (is_null($from) || is_null($till)) {
-				throw new Nette\InvalidArgumentException('Date boundaries cannot be null.');
+				throw new \Nette\InvalidArgumentException('Date boundaries cannot be null.');
 			}
 		}
 
@@ -80,7 +77,7 @@ class DateTime extends Nette\Utils\DateTime
 	 * @param \DateTime $till
 	 * @param bool $allowNullBoundaries
 	 * @return bool
-	 * @throws Nette\InvalidArgumentException
+	 * @throws \Nette\InvalidArgumentException
 	 */
 	public static function isInRange(
 		\DateTime $dateTime,
@@ -91,7 +88,7 @@ class DateTime extends Nette\Utils\DateTime
 	{
 		if ($allowNullBoundaries !== true) {
 			if (is_null($from) || is_null($till)) {
-				throw new Nette\InvalidArgumentException('Date boundaries cannot be null.');
+				throw new \Nette\InvalidArgumentException('Date boundaries cannot be null.');
 			}
 		}
 

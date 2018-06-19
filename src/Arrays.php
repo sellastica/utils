@@ -88,14 +88,29 @@ class Arrays extends \Nette\Utils\Arrays
 	/**
 	 * @param array $arr1
 	 * @param array $arr2
+	 * @param bool $identityCompare
 	 * @return array
 	 */
-	public static function diff(array $arr1, array $arr2): array
+	public static function diff(array $arr1, array $arr2, bool $identityCompare = true): array
 	{
-		return array_udiff_assoc($arr1, $arr2, function ($val1, $val2) {
-			if (is_object($val1) && is_object($val2) && ($val1 === $val2)) {
+		return array_udiff_assoc($arr1, $arr2, function ($val1, $val2) use ($identityCompare) {
+			if (!$identityCompare
+				&& is_object($val1)
+				&& is_object($val2)
+				&& ($val1 == $val2)
+			) {
 				return 0;
-			} elseif ($val1 === $val2) {
+			} elseif ($identityCompare
+				&& is_object($val1)
+				&& is_object($val2)
+				&& ($val1 === $val2)
+			) {
+				return 0;
+			} elseif ($identityCompare
+				&& $val1 === $val2) {
+				return 0;
+			} elseif (!$identityCompare
+				&& $val1 == $val2) {
 				return 0;
 			}
 
