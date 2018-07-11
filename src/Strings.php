@@ -89,6 +89,22 @@ class Strings extends \Nette\Utils\Strings
 	}
 
 	/**
+	 * @param string $search
+	 * @param $replace
+	 * @param string $subject
+	 * @return string
+	 */
+	public static function replaceLast(string $search, $replace, string $subject): string
+	{
+		$pos = strrpos($subject, $search);
+		if ($pos !== false) {
+			$subject = substr_replace($subject, $replace, $pos, strlen($search));
+		}
+
+		return $subject;
+	}
+
+	/**
 	 * Explodes full name and tries to detect first name, last name and sex (in czech language)
 	 *
 	 * @param string $fullName
