@@ -62,4 +62,47 @@ class Images
 	{
 		return self::getPlaceholderUrl(100, 100);
 	}
+
+	/**
+	 * @param string $mimeType
+	 * @return bool
+	 */
+	public static function isWebImage(string $mimeType): bool
+	{
+		return in_array($mimeType, [
+			'image/png',
+			'image/jpeg',
+			'image/pjpeg',
+			'image/gif',
+			'image/bmp',
+			'image/x-windows-bmp',
+		]);
+	}
+
+	/**
+	 * @param string $mimeType
+	 * @return string
+	 */
+	public static function getExtensionByMimeType(string $mimeType): string
+	{
+		switch ($mimeType) {
+			case 'image/png':
+				return 'png';
+				break;
+			case 'image/jpeg':
+			case 'image/pjpeg':
+				return 'jpg';
+				break;
+			case 'image/gif':
+				return 'gif';
+				break;
+			case 'image/bmp':
+			case 'image/x-windows-bmp':
+				return 'bmp';
+				break;
+			default:
+				throw new \InvalidArgumentException("Unknown image mime type $mimeType");
+				break;
+		}
+	}
 }
