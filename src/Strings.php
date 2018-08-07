@@ -229,6 +229,16 @@ class Strings extends \Nette\Utils\Strings
 
 	/**
 	 * @param string $string
+	 * @param string $replacement
+	 * @return string
+	 */
+	public static function toSnakeCase(string $string, string $replacement = '_'): string
+	{
+		return ltrim(strtolower(preg_replace('/[^a-zA-Z0-9]/', "$replacement", $string)), $replacement);
+	}
+
+	/**
+	 * @param string $string
 	 * @param string $divider
 	 * @param bool $capitalizeFirstCharacter
 	 * @return string
