@@ -32,9 +32,10 @@ class RoundingPrecision
 	}
 
 	/**
-	 * @return int
+	 * @return float
+	 * @throws \UnexpectedValueException
 	 */
-	public function getExponent(): int
+	public function getExponent(): float
 	{
 		switch ($this->precision) {
 			case self::THOUSANDTH:
