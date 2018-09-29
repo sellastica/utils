@@ -80,6 +80,21 @@ class Images
 	}
 
 	/**
+	 * @param string $extension
+	 * @return bool
+	 */
+	public static function isWebImageExtension(string $extension): bool
+	{
+		return in_array(strtolower($extension), [
+			'bmp',
+			'gif',
+			'jpg',
+			'jpeg',
+			'png',
+		]);
+	}
+
+	/**
 	 * @param string $mimeType
 	 * @return string
 	 */
