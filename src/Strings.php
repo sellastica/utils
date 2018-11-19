@@ -357,4 +357,26 @@ class Strings extends \Nette\Utils\Strings
 	{
 		return (bool)preg_match('~^[\w]*$~', $string);
 	}
+
+	/**
+	 * @param string $phone
+	 * @return string
+	 */
+	public static function formatPhoneNumber(string $phone): string
+	{
+		//allow only digits, remove all other characters
+		$number = preg_replace('/[^\d]/', '', $phone);
+
+		$length = strlen($number);
+		$number = strrev($number);
+		$result = '';
+		for ($i = 0; $i < $length; $i++) {
+			$result .= $number[$i];
+			if (($i + 1) % 3 === 0) {
+				$result .= ' ';
+			}
+		}
+
+		return strrev($result);
+	}
 }
