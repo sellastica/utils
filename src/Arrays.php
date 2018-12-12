@@ -110,7 +110,7 @@ class Arrays extends \Nette\Utils\Arrays
 				&& $val1 === $val2) {
 				return 0;
 			} elseif (!$identityCompare
-				&& $val1 === $val2) {
+				&& $val1 == $val2) {
 				return 0;
 			}
 
