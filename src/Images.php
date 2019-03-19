@@ -31,10 +31,11 @@ class Images
 	/**
 	 * @param int|null $width
 	 * @param int|null $height
+	 * @param string $color
 	 * @return string
 	 * @throws \InvalidArgumentException
 	 */
-	public static function getPlaceholderUrl(?int $width, ?int $height): string 
+	public static function getPlaceholderUrl(?int $width, ?int $height, string $color = 'f5f5f5'): string
 	{
 		if (!$width && !$height) {
 			throw new \InvalidArgumentException('Width or height must be defined');
@@ -42,7 +43,7 @@ class Images
 			$width = $height = max($width, $height);
 		}
 
-		return self::PLACEHOLDER_DOMAIN . '/' . $width . 'x' . $height . '/f5f5f5?text=+';
+		return self::PLACEHOLDER_DOMAIN . '/' . $width . 'x' . $height . '/' . $color . '?text=+';
 	}
 
 	/**
