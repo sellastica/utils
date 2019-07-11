@@ -7,7 +7,8 @@ class RoundingMode
 		UP = 'up',
 		DOWN = 'down',
 		MATHEMATICALLY = 'mathematically',
-		STATISTICAL = 'statistical';
+		STATISTICAL = 'statistical',
+		BATA = 'bata';
 
 	/** @var string */
 	private $mode;
@@ -27,6 +28,14 @@ class RoundingMode
 	public function getMode(): string
 	{
 		return $this->mode;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isNone(): bool
+	{
+		return $this->mode === self::NONE;
 	}
 
 	/**

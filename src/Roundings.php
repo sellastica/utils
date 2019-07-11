@@ -36,6 +36,9 @@ class Roundings
 			case RoundingMode::DOWN:
 				return self::roundDown($number, $precision);
 				break;
+			case RoundingMode::BATA:
+				return self::roundBata($number);
+				break;
 			default:
 				return $number;
 				break;
@@ -173,6 +176,21 @@ class Roundings
 			default:
 				return floor($number);
 				break;
+		}
+	}
+
+	/**
+	 * @param float $number
+	 * @return float|int
+	 */
+	public static function roundBata(float $number): float
+	{
+		if ($number < 10) {
+			return self::roundMathematically($number, RoundingPrecision::TENTHS);
+		} elseif ($number < 100) {
+			return self::roundMathematically($number, RoundingPrecision::INTEGERS);
+		} else {
+			return self::roundMathematically($number, RoundingPrecision::TENS) - 1;
 		}
 	}
 }

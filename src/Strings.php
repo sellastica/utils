@@ -379,4 +379,63 @@ class Strings extends \Nette\Utils\Strings
 
 		return strrev($result);
 	}
+
+	/**
+	 * @param array $array
+	 * @param string|null $divider
+	 * @return string
+	 */
+	public static function getLongestMatchingSubstringFromArray(
+		array $array,
+		string $divider = null
+	): string
+	{
+		if (!sizeof($array)) {
+			$longest = '';
+		} elseif (sizeof($array) === 1) {
+			$longest = current($array);
+		} else {
+			$longest = array_shift($array);
+			foreach ($array as $str2) {
+				if (!$longest = self::getLongestMatchingSubstring($longest, $str2, $divider)) {
+					break;
+				}
+			}
+		}
+
+		return $longest;
+	}
+
+	/**
+	 * @param string $str1
+	 * @param string $str2
+	 * @param string|null $divider
+	 * @return string
+	 */
+	public static function getLongestMatchingSubstring(
+		string $str1,
+		string $str2,
+		string $divider = null
+	): string
+	{
+		$length1 = strlen($str1);
+		$longest = '';
+		for ($i = 1; $i <= $length1; $i++) {
+			if (isset($divider)) {
+				$sub1 = Strings::before($str1, ' ', $i);
+				$sub2 = Strings::before($str2, ' ', $i);
+			} else {
+				$sub1 = substr($str1, 0, $i);
+				$sub2 = substr($str2, 0, $i);
+			}
+
+			if ($sub1 !== $sub2) {
+				break;
+			}
+
+			$longest = $sub1;
+		}
+
+		return $longest;
+	}
 }

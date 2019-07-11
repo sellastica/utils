@@ -124,4 +124,16 @@ class DateTime extends \Nette\Utils\DateTime
 
 		return Numbers::areRangesCrossed($from1Timestamp, $till1Timestamp, $from2Timestamp, $till2Timestamp);
 	}
+
+	/**
+	 * @param \DateInterval $interval
+	 * @return int
+	 */
+	public static function dateIntervalToSeconds(\DateInterval $interval): int
+	{
+		$reference = new \DateTimeImmutable();
+		$endTime = $reference->add($interval);
+
+		return $endTime->getTimestamp() - $reference->getTimestamp();
+	}
 }
