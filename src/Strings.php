@@ -418,15 +418,25 @@ class Strings extends \Nette\Utils\Strings
 		string $divider = null
 	): string
 	{
-		$length1 = strlen($str1);
+		$length1 = isset($divider)
+			? substr_count($str1, $divider) + 1 //words count
+			: Strings::length($str1);
 		$longest = '';
 		for ($i = 1; $i <= $length1; $i++) {
 			if (isset($divider)) {
 				$sub1 = Strings::before($str1, ' ', $i);
 				$sub2 = Strings::before($str2, ' ', $i);
 			} else {
-				$sub1 = substr($str1, 0, $i);
-				$sub2 = substr($str2, 0, $i);
+				$sub1 = Strings::substring($str1, 0, $i);
+				$sub2 = Strings::substring($str2, 0, $i);
+			}
+
+			if ($sub1 === false) { //different count of dividers than in the first string
+				$sub1 = $str1;
+			}
+
+			if ($sub2 === false) { //different count of dividers than in the first string
+				$sub2 = $str2;
 			}
 
 			if ($sub1 !== $sub2) {
