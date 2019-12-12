@@ -183,11 +183,12 @@ class Strings extends \Nette\Utils\Strings
 
 	/**
 	 * @param string $string
+	 * @param string $replacement
 	 * @return string
 	 */
-	public static function removeSpaces(string $string): string
+	public static function replaceSpaces(string $string, string $replacement = ''): string
 	{
-		return trim(preg_replace('/\s+/', '', $string));
+		return trim(preg_replace('/\s+/', $replacement, $string));
 	}
 
 	/**
